@@ -1,0 +1,22 @@
+{
+  "plugins": [
+    "@ianvs/prettier-plugin-sort-imports",
+    "prettier-plugin-tailwindcss"
+  ],
+  "importOrder": [
+    "<BUILTIN_MODULES>",
+    "",
+    "^react$",
+    "^(next|next/(.*))$",
+    "",
+    "<THIRD_PARTY_MODULES>",
+    "",
+    "^(@|@public)(/.*)$",
+    "^[.]"
+  ],
+  "singleQuote": false,
+  "trailingComma": "all",
+  "useTabs": false,
+  "tabWidth": 2,
+  "semi": true
+}
