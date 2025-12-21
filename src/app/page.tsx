@@ -31,6 +31,33 @@ const services = [
   },
 ];
 
+const processes = [
+  {
+    title: "Scope",
+    desc: [
+      "You describe the app. I define the scope, platform, and constraints.",
+      "If unclear → paid scoping. No surprises.",
+    ],
+  },
+  {
+    title: "Price",
+    desc: [
+      "Fixed price or milestone-based. Small projects only. No open-ended builds.",
+    ],
+  },
+  {
+    title: "Build",
+    desc: [
+      "Unity app + backend if needed.",
+      "Weekly progress. Early playable version.",
+    ],
+  },
+  {
+    title: "Delivery",
+    desc: ["Deployed to device/platform.", "Handover + optional support."],
+  },
+];
+
 const portfolios = [
   {
     title: "Promotional Game",
@@ -120,38 +147,16 @@ export default function HomePage() {
       <section className="mx-auto max-w-3xl px-6">
         <h2 className="mb-4 text-3xl font-bold">How it works</h2>
         <div className="space-y-6">
-          <div>
-            <h3 className="text-lg font-bold">Scope</h3>
-            <p className="text-gray-600">
-              You describe the app. I define the scope, platform, and
-              constraints.
-              <br />
-              If unclear → paid scoping. No surprises.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-bold">Price</h3>
-            <p className="text-gray-600">
-              Fixed price or milestone-based. Small projects only. No open-ended
-              builds.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-bold">Build</h3>
-            <p className="text-gray-600">
-              Unity app + backend if needed.
-              <br />
-              Weekly progress. Early playable version.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-bold">Delivery</h3>
-            <p className="text-gray-600">
-              Deployed to device/platform.
-              <br />
-              Handover + optional support.
-            </p>
-          </div>
+          {processes.map((item, idx) => (
+            <div key={idx}>
+              <h3 className="text-lg font-bold">{item.title}</h3>
+              <p className="flex flex-col text-gray-600">
+                {item.desc.map((item, idx) => (
+                  <span key={idx}>{item}</span>
+                ))}
+              </p>
+            </div>
+          ))}
         </div>
 
         <div className="my-16 mb-20 flex flex-col items-center text-center">
