@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Cedarville_Cursive, Inter } from "next/font/google";
 
+import Footer from "@/components/footer";
+import Header from "@/components/header";
+
 import "./globals.css";
 
 const inter = Inter({
@@ -25,8 +28,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${cedarvilleCursive.variable} antialiased`}>
+      <body
+        className={`${inter.className} ${cedarvilleCursive.variable} antialiased selection:bg-gray-300`}
+      >
+        <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
