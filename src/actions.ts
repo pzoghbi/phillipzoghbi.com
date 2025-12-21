@@ -2,7 +2,13 @@
 
 import { Resend } from "resend";
 
-const resend = new Resend("re_3yFQTT9t_63H9v1LHYyYCZRAwMbxD54pz");
+const { RESEND_API_KEY } = process.env;
+
+if (!RESEND_API_KEY) {
+  throw new Error("Missing RESEND_API_KEY environemt variable.");
+}
+
+const resend = new Resend(RESEND_API_KEY);
 
 export const sendMail = async function () {
   const { data, error } = await resend.emails.send({
