@@ -1,6 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import bbt from "@public/img/bbt.png";
 import bbt_example from "@public/img/examples/bbt_example.jpeg";
 import jana_example from "@public/img/examples/jana_example.jpeg";
@@ -63,51 +71,47 @@ const portfolios = [
     title: "Promotional Game",
     desc: "Engaged thousands of restaurant customers over three months on custom hardware.",
     tooltip: "",
-    bg: "bg-blue-100",
     img: bbt_example,
   },
   {
     title: "Digital Kids' Magazine",
     desc: "Entertained resort guests and increased family engagement.",
     tooltip: "Project completed as part of Brojka team.",
-    bg: "bg-purple-100",
     img: valamar_example,
   },
   {
     title: "Gamified Promo App (AR)",
     desc: "Scannable AR experience on water bottles engaged thousands of users in six months.",
     tooltip: "Project completed as part of Brojka team.",
-    bg: "bg-green-100",
     img: jana_example,
   },
 ];
 
 export default function HomePage() {
   return (
-    <main className="space-y-16 pb-8">
+    <main className="space-y-16">
       {/* Hero Section */}
-      <section className="mx-auto mt-4 max-w-3xl px-6 md:mt-8">
+      <section className="flex flex-col gap-16">
         {/* Left-aligned Header text */}
-        <h1 className="mb-6 text-4xl leading-tight font-bold md:text-5xl">
-          Interactive & gamified apps
-          <br />
-          for businesses — built fast,
-          <br />
-          fixed price.
-        </h1>
-        <p className="mb-16 max-w-2xl text-xl leading-relaxed">
-          Kiosks, ordering systems, internal tools, and customer-facing apps
-          using Unity.
-        </p>
+        <div className="space-y-5">
+          <h1 className="max-w-4xl text-4xl leading-tight font-bold sm:text-5xl md:text-6xl">
+            Interactive & gamified apps for businesses — built fast, fixed
+            price.
+          </h1>
+          <p className="max-w-3xl text-lg leading-relaxed sm:text-xl md:text-2xl">
+            Kiosks, ordering systems, internal tools, and customer-facing apps
+            using Unity.
+          </p>
+        </div>
 
         {/* Centered Social Proof & Button */}
-        <div className="flex flex-col items-center text-center">
-          <p className="text-1xl mb-6 font-bold">
+        <div className="flex flex-col items-center gap-6 text-center">
+          <p className="text-xl font-bold">
             Delivered 9 Interactive Apps For Retail, Events, And Internal Tools
           </p>
 
           {/* Client Logos as Images */}
-          <div className="mb-12 flex flex-col items-center justify-center gap-8 opacity-80 sm:flex-row">
+          <div className="flex flex-col items-center justify-center gap-8 opacity-80 sm:flex-row">
             <Image
               src={valamar}
               alt="Valamar"
@@ -120,101 +124,93 @@ export default function HomePage() {
               className="h-25 w-auto object-contain"
             />
           </div>
-
-          <Link
-            href="/contact"
-            className="bg-black px-8 py-3 font-bold text-white transition-colors hover:bg-gray-800"
-          >
-            Get a quote for your project
-          </Link>
         </div>
+        <Button asChild className="self-center font-bold">
+          <Link href="/contact">Get a quote for your project</Link>
+        </Button>
       </section>
 
       {/* Services Section */}
-      <section className="mx-auto max-w-3xl px-6">
-        <h2 className="mb-4 text-3xl font-bold">What I build</h2>
-        <div className="space-y-8">
+      <section className="space-y-4">
+        <h2 className="text-3xl font-bold">What I build</h2>
+        <div className="space-y-6">
           {services.map((item, idx) => (
-            <div key={idx}>
-              <h3 className="mb-1 text-lg font-bold">{item.title}</h3>
-              <p className="max-w-2xl text-gray-600">{item.desc}</p>
+            <div key={idx} className="space-y-1">
+              <h3 className="text-lg font-bold">{item.title}</h3>
+              <p className="max-w-prose text-gray-600">{item.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Process Section */}
-      <section className="mx-auto max-w-3xl px-6">
-        <h2 className="mb-4 text-3xl font-bold">How it works</h2>
+      <section className="flex flex-col gap-4">
+        <h2 className="text-3xl font-bold">How it works</h2>
         <div className="space-y-6">
           {processes.map((item, idx) => (
-            <div key={idx}>
+            <div key={idx} className="space-y-1">
               <h3 className="text-lg font-bold">{item.title}</h3>
               <p className="flex flex-col text-gray-600">
                 {item.desc.map((item, idx) => (
-                  <span key={idx}>{item}</span>
+                  <span key={idx} className="max-w-prose">
+                    {item}
+                  </span>
                 ))}
               </p>
             </div>
           ))}
         </div>
-
-        <div className="my-16 mb-20 flex flex-col items-center text-center">
-          <Link
-            href="/contact"
-            className="bg-black px-8 py-3 font-bold text-white transition-colors hover:bg-gray-800"
-          >
-            Get a quote for your project
-          </Link>
-        </div>
+        <Button asChild className="self-center font-bold">
+          <Link href="/contact">Get a quote for your project</Link>
+        </Button>
       </section>
 
       {/* Portfolio Grid */}
-      <section className="mx-auto max-w-3xl px-6">
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          {portfolios.map((project, idx) => (
-            <div key={idx} className="bg-[#FDFDFD] pb-4">
-              <Image
-                alt={project.title}
-                src={project.img}
-                className="mb-4 flex max-h-50 w-full items-center justify-center object-cover text-sm text-gray-400"
-              />
-              <div className="px-4">
-                <h3 className="mb-2 text-sm font-bold">{project.title}</h3>
-                <p className="mb-4 text-[14px] leading-relaxed text-gray-700">
-                  {project.desc}
-                </p>
-                <p className="text-[12px] leading-relaxed text-gray-400">
-                  {project.tooltip}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
+      <section className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        {portfolios.map((project, idx) => (
+          <Card key={idx} className="pt-0 pb-4">
+            <Image
+              alt={project.title}
+              src={project.img}
+              className="max-h-50 object-cover"
+            />
+            <CardHeader className="px-4">
+              <CardTitle className="font-bold">{project.title}</CardTitle>
+              <CardDescription className="text-foreground">
+                {project.desc}
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="px-4">
+              <p className="text-foreground/40 text-sm">{project.tooltip}</p>
+            </CardContent>
+          </Card>
+        ))}
       </section>
 
       {/* Why Unity / Footer CTA */}
-      <section className="mx-auto max-w-3xl px-6">
-        <h2 className="mb-6 text-3xl font-bold">Why Unity</h2>
-        <ul className="mb-12 list-inside list-disc space-y-2 text-gray-800">
-          <li>One codebase for desktop, mobile, kiosks, and custom hardware</li>
-          <li>Fast iteration for complex UI and interaction logic</li>
-          <li>Proven for real-time, touch-driven experiences</li>
-          <li>Easy integration with backend services and APIs</li>
-        </ul>
-        <blockquote className="mx-auto mb-12 max-w-3xl text-center text-sm text-gray-800 italic">
+      <section className="flex flex-col gap-12">
+        <div className="space-y-6">
+          <h2 className="text-3xl font-bold">Why Unity</h2>
+          <ul className="list-inside list-disc space-y-2 text-gray-800">
+            <li>
+              One codebase for desktop, mobile, kiosks, and custom hardware
+            </li>
+            <li>Fast iteration for complex UI and interaction logic</li>
+            <li>Proven for real-time, touch-driven experiences</li>
+            <li>Easy integration with backend services and APIs</li>
+          </ul>
+        </div>
+
+        <blockquote className="max-w-3xl self-center text-center text-sm text-gray-800 italic">
           &quot;The game elevated the installation and attracted new customers
-          consistently over a three-month period.&quot; <br />
+          consistently over a three-month period.&quot;
+          <br />
           <span className="font-bold not-italic">— Hassan Amer, Swish</span>
         </blockquote>
-        <div className="flex justify-center">
-          <Link
-            href="/contact"
-            className="bg-black px-8 py-3 font-bold text-white transition-colors hover:bg-gray-800"
-          >
-            Request a project quote
-          </Link>
-        </div>
+
+        <Button asChild className="self-center font-bold">
+          <Link href="/contact">Request a project quote</Link>
+        </Button>
       </section>
     </main>
   );

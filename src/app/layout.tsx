@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} ${cedarvilleCursive.variable} antialiased selection:bg-gray-300`}
+        className={`${inter.className} ${cedarvilleCursive.variable} container antialiased selection:bg-gray-300 xl:max-w-5xl 2xl:max-w-5xl`}
       >
         <Header />
         {children}
