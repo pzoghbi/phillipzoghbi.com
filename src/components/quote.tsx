@@ -5,7 +5,10 @@ import { useState } from "react";
 import { sendMail } from "@/actions";
 
 export default function Quote({ onSubmit }: { onSubmit: () => void }) {
+  const [description, setDescription] = useState(""); // Track description
   const [selectedPlatforms, setSelectedPlatforms] = useState<string[]>([]);
+  const [budget, setBudget] = useState(""); // Track budget
+  const [timeline, setTimeline] = useState(""); // Track timeline
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [error, setError] = useState(false);
@@ -24,12 +27,23 @@ export default function Quote({ onSubmit }: { onSubmit: () => void }) {
     if (!email.trim() && !phone.trim()) {
       setError(true);
       window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+      return; // Stop execution if validation fails
     } else {
+      setError(false);
+
+      // Pass all form data to sendMail
+      await sendMail({
+        description,
+        platforms: selectedPlatforms,
+        budget,
+        timeline,
+        email,
+        phone,
+      });
+
+      console.log("sent");
       onSubmit();
     }
-
-    await sendMail();
-    console.log("sent");
   };
 
   return (
@@ -45,6 +59,8 @@ export default function Quote({ onSubmit }: { onSubmit: () => void }) {
           </label>
           <textarea
             required
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
             className="h-32 w-full resize-none border-none bg-[#FDFDFD] p-3 focus:ring-2 focus:ring-black"
             placeholder=""
           />
@@ -87,17 +103,18 @@ export default function Quote({ onSubmit }: { onSubmit: () => void }) {
           <div className="relative w-full md:w-2/3">
             <select
               required
+              value={budget}
+              onChange={(e) => setBudget(e.target.value)}
               className="w-full cursor-pointer appearance-none border border-gray-400 bg-white p-2 text-lg outline-none focus:ring-2 focus:ring-black"
-              defaultValue={""}
             >
               <option value="" disabled hidden>
                 Select a range
               </option>
-              <option value="under-1000">&lt; €1000 (very small scope)</option>
-              <option value="1000-2000">€1000 - €2000</option>
-              <option value="2000-5000">€2000 - €5000</option>
-              <option value="5000-10000">€5000 - €10000</option>
-              <option value="over-10000">€10000+</option>
+              <option value="under €1000">&lt; €1000 (very small scope)</option>
+              <option value="€1000-€2000">€1000 - €2000</option>
+              <option value="€2000-€5000">€2000 - €5000</option>
+              <option value="€5000-€10000">€5000 - €10000</option>
+              <option value="€10000+">€10000+</option>
             </select>
             {/* Custom Arrow Icon */}
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-700">
@@ -123,16 +140,17 @@ export default function Quote({ onSubmit }: { onSubmit: () => void }) {
           <div className="relative w-full md:w-2/3">
             <select
               required
+              value={timeline}
+              onChange={(e) => setTimeline(e.target.value)}
               className="w-full cursor-pointer appearance-none border border-gray-400 bg-white p-2 text-lg outline-none focus:ring-2 focus:ring-black"
-              defaultValue={""}
             >
               <option value="" disabled hidden>
                 Select a timeline
               </option>
-              <option value="under-1-mo">&lt; 1 month</option>
-              <option value="1-3-mo">1-3 months</option>
-              <option value="3-6-mo">3-6 months</option>
-              <option value="6-mo-plus">Flexible / not fixed</option>
+              <option value="<1 month">&lt; 1 month</option>
+              <option value="1-3-months">1-3 months</option>
+              <option value="3-6 months">3-6 months</option>
+              <option value="Flexible">Flexible / not fixed</option>
             </select>
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-700">
               <svg
