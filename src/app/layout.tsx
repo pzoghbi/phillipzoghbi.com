@@ -3,6 +3,7 @@ import { Cedarville_Cursive, Inter } from "next/font/google";
 
 import Footer from "@/components/footer";
 import Header from "@/components/header";
+import { Toaster } from "@/components/ui/sonner";
 
 import "./globals.css";
 
@@ -29,11 +30,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} ${cedarvilleCursive.variable} container antialiased selection:bg-gray-300 xl:max-w-5xl 2xl:max-w-5xl`}
+        className={`${inter.className} ${cedarvilleCursive.variable} antialiased`}
       >
-        <Header />
-        {children}
-        <Footer />
+        <div className="container selection:bg-gray-300 xl:max-w-5xl 2xl:max-w-5xl">
+          <Header />
+          {children}
+          <Footer />
+        </div>
+        <Toaster />
       </body>
     </html>
   );

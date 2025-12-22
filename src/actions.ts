@@ -2,6 +2,8 @@
 
 import { Resend } from "resend";
 
+import type { FormSchemaInput } from "./components/contact-form";
+
 const { RESEND_API_KEY } = process.env;
 
 if (!RESEND_API_KEY) {
@@ -10,17 +12,15 @@ if (!RESEND_API_KEY) {
 
 const resend = new Resend(RESEND_API_KEY);
 
-export const sendMail = async function () {
-  const { data, error } = await resend.emails.send({
-    from: "Acme <onboarding@resend.dev>",
-    to: ["phillip.zoghby@gmail.com"],
-    subject: "Hello World",
-    html: "<strong>It works!</strong>",
-  });
-
-  if (error) {
-    return console.error({ error });
-  }
-
-  console.log({ data });
+export const sendMail = async function (values: FormSchemaInput) {
+  // const { data, error } = await resend.emails.send({
+  //   from: "Acme <onboarding@resend.dev>",
+  //   to: ["phillip.zoghby@gmail.com"],
+  //   subject: "Hello World",
+  //   html: "<strong>It works!</strong>",
+  // });
+  // if (error) {
+  //   return error.message;
+  // }
+  // return data;
 };
