@@ -16,21 +16,31 @@ const resend = new Resend(RESEND_API_KEY);
 
 export const sendMail = async function (values: FormSchemaInput) {
   try {
-    const [returnedData] = await db.insert(forms).values(values).returning();
+    const [data] = await db.insert(forms).values(values).returning();
 
-    const { data, error } = await resend.emails.send({
+    const resendData = await resend.emails.send({
       from: `Acme <onboarding@resend.dev>`,
-      to: ["leonardo.yakub@gmail.com"],
-      subject: "Hello World",
-      html: "<strong>It works!</strong>",
+      to: ["phillip.zoghby@gmail.com"],
+      subject: `Project Quote Request: ${data.devices} app ${data.budget} in ${data.timeline}`,
+      html: `
+        <h1>New Project Quote Request</h1>
+        <p><strong>Description:</strong> ${data.description}</p>
+        <p><strong>Platforms:</strong> ${data.devices.join(", ") || "None selected"}</p>
+        <p><strong>Budget Range:</strong> ${data.budget}</p>
+        <p><strong>Timeline:</strong> ${data.timeline}</p>
+        <hr />
+        <h3>Contact Information:</h3>
+        <p><strong>Email:</strong> ${data.email || "Not provided"}</p>
+        <p><strong>Phone:</strong> ${data.phone || "Not provided"}</p>
+      `,
     });
 
-    if (error) {
-      console.error(error);
-      return error.message;
+    if (resendData.error) {
+      console.error(resendData.error);
+      return resendData.error.message;
     }
 
-    return data;
+    return resendData.data;
   } catch (error) {
     console.error(error);
     return "Form failed to submit.";
