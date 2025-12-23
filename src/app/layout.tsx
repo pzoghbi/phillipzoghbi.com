@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Cedarville_Cursive, Inter } from "next/font/google";
 
+import { GoogleAnalytics } from "@next/third-parties/google";
+
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import { Toaster } from "@/components/ui/sonner";
@@ -39,6 +41,7 @@ export default function RootLayout({
         </div>
         <Toaster />
       </body>
+      <GoogleAnalytics gaId="G-XYZ" />
     </html>
   );
 }
