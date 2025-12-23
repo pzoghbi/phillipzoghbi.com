@@ -8,6 +8,13 @@
       "when": 1766444892259,
       "tag": "0000_cool_doctor_octopus",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1766448789554,
+      "tag": "0001_stale_mojo",
+      "breakpoints": true
     }
   ]
 }

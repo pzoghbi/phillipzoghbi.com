@@ -13,6 +13,6 @@ export const forms = pgTable("forms", {
   devices: text().array().notNull(),
   budget: text().notNull(),
   timeline: text().notNull(),
-  email: text().unique(),
-  phone: text().unique(),
+  email: text(),
+  phone: text(),
 });
