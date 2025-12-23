@@ -19,7 +19,7 @@ export const sendMail = async function (values: FormSchemaInput) {
     const [data] = await db.insert(forms).values(values).returning();
 
     const resendData = await resend.emails.send({
-      from: `Acme <onboarding@resend.dev>`,
+      from: `Dashboard <projects@phillipzoghbi.com>`,
       to: ["phillip.zoghby@gmail.com"],
       subject: `Project Quote Request: ${data.devices} app ${data.budget} in ${data.timeline}`,
       html: `
