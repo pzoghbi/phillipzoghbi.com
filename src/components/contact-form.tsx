@@ -51,18 +51,18 @@ const devices = [
 ] as const;
 
 const budgets = [
-  { label: "< €1000 (very small scope)", value: "under-1000" },
-  { label: "€1000 - €2000", value: "1000-2000" },
-  { label: "€2000 - €5000", value: "2000-5000" },
-  { label: "€4000 - €10000", value: "5000-10000" },
-  { label: "€10000+", value: "over-10000" },
+  { label: "< €1000 (very small scope)", value: "under €1000" },
+  { label: "€1000 - €2000", value: "€1000-€2000" },
+  { label: "€2000 - €5000", value: "€2000-€5000" },
+  { label: "€4000 - €10000", value: "€5000-€10000" },
+  { label: "€10000+", value: "€10000+" },
 ] as const;
 
 const timelines = [
-  { label: "< 1 month", value: "under-1-mo" },
-  { label: "1-3 months", value: "1-3-mo" },
-  { label: "3-6 months", value: "3-6-mo" },
-  { label: "Flexible / not fixed", value: "6-mo-plus" },
+  { label: "< 1 month", value: "under 1 month" },
+  { label: "1-3 months", value: "1-3 months" },
+  { label: "3-6 months", value: "3-6 months" },
+  { label: "Flexible / not fixed", value: "flexible" },
 ] as const;
 
 const formSchema = v.object({
