@@ -27,6 +27,7 @@ import {
 } from "@/components/ui/select";
 import { Spinner } from "@/components/ui/spinner";
 import { Textarea } from "@/components/ui/textarea";
+import SuccessMessage from "./success-message";
 import { Button } from "./ui/button";
 import { Checkbox } from "./ui/checkbox";
 import { Input } from "./ui/input";
@@ -126,18 +127,13 @@ export default function ContactForm() {
           toast.error(data);
           return;
         }
-
-        toast.success("Form submitted successfully", {
-          description: (
-            <div className="text-foreground">
-              We&apos;ll review your project and respond within 24-48 hours.
-            </div>
-          ),
-          duration: 60 * 1000,
-        });
       });
     },
   });
+
+  if (form.state.isSubmitted) {
+    return <SuccessMessage />;
+  }
 
   const isMutating = isPending || form.state.isSubmitting;
 

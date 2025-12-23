@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Cedarville_Cursive, Inter } from "next/font/google";
 
+import { GoogleAnalytics } from "@next/third-parties/google";
+
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import { Toaster } from "@/components/ui/sonner";
@@ -32,13 +34,14 @@ export default function RootLayout({
       <body
         className={`${inter.className} ${cedarvilleCursive.variable} antialiased`}
       >
-        <div className="container selection:bg-gray-300 xl:max-w-5xl 2xl:max-w-5xl">
+        <div className="container flex min-h-svh flex-col selection:bg-gray-300 xl:max-w-5xl 2xl:max-w-5xl">
           <Header />
           {children}
           <Footer />
         </div>
         <Toaster />
       </body>
+      <GoogleAnalytics gaId="G-XYZ" />
     </html>
   );
 }
