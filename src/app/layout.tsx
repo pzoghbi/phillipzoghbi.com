@@ -1,8 +1,8 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { Cedarville_Cursive, Inter } from "next/font/google";
 
-import { GoogleAnalytics } from "@next/third-parties/google";
-
+import { Analytics } from "@/components/analytics";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import { Toaster } from "@/components/ui/sonner";
@@ -29,6 +29,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { NEXT_PUBLIC_GA_ID } = process.env;
+
+  if (!NEXT_PUBLIC_GA_ID) {
+    throw new Error("NEXT_PUBLIC_GA_ID is not defined");
+  }
+
   return (
     <html lang="en">
       <body
@@ -41,7 +47,9 @@ export default function RootLayout({
         </div>
         <Toaster />
       </body>
-      <GoogleAnalytics gaId="G-LR6JWK6WBH" />
+      <Suspense>
+        <Analytics gaId={NEXT_PUBLIC_GA_ID} />
+      </Suspense>
     </html>
   );
 }
