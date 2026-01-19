@@ -41,7 +41,7 @@ export default function RootLayout({
         </div>
         <Toaster />
       </body>
-      <GoogleAnalytics gaId="G-XYZ" />
+      <GoogleAnalytics gaId="G-LR6JWK6WBH" />
     </html>
   );
 }
